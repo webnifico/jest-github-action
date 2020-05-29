@@ -44,7 +44,7 @@ export async function run() {
     await octokit.checks.create(checkPayload)
 
     // Coverage comments
-    if (shouldCommentCoverage()) {
+    if (getPullId() && shouldCommentCoverage()) {
       const comment = getCoverageTable(results, CWD)
       if (comment) {
         await deletePreviousComments(octokit)
